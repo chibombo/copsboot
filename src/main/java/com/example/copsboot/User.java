@@ -1,6 +1,7 @@
 package com.example.copsboot;
 
 import java.util.Set;
+
 import java.util.UUID;
 
 import javax.persistence.ElementCollection;
@@ -11,11 +12,13 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.example.orm.jpa.AbstractEntity;
 @Entity
 @Table(name = "copsboot_user")
-public class User {
+public class User extends AbstractEntity<UserId>{
 	@Id
-	private UUID id;
+	private UserId id;
 	private String email;
 	private String password;
 	
@@ -26,15 +29,15 @@ public class User {
 	
 	protected User() {}
 	
-	public User(UUID id, String email, String password, Set<UserRole> roles) {
-		super();
+	public User(UserId id, String email, String password, Set<UserRole> roles) {
+		super(id);
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.roles = roles;
 	}
 	
-	public UUID getId() {
+	public UserId getId() {
 		return id;
 	}
 

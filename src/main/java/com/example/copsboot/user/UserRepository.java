@@ -1,4 +1,4 @@
-package com.example.copsboot;
+package com.example.copsboot.user;
 
 import java.util.UUID;
 import org.springframework.data.repository.CrudRepository;

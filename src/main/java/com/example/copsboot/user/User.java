@@ -13,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.example.orm.jpa.AbstractEntity;
+import com.google.common.collect.Sets;
 @Entity
 @Table(name = "copsboot_user")
 public class User extends AbstractEntity<UserId>{
@@ -37,6 +40,14 @@ public class User extends AbstractEntity<UserId>{
 		this.roles = roles;
 	}
 	
+    public static User createOfficer(UserId userId, String email, String encodedPassword) {
+        return new User(userId, email, encodedPassword, Sets.newHashSet(UserRole.OFFICER));
+    }
+
+    public static User createCaptain(UserId userId, String email, String encodedPassword) {
+        return new User(userId, email, encodedPassword, Sets.newHashSet(UserRole.CAPTAIN));
+    }
+	
 	public UserId getId() {
 		return id;
 	}
@@ -54,4 +65,5 @@ public class User extends AbstractEntity<UserId>{
 	}
 
 
+	
 }
